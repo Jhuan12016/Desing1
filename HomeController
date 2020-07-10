@@ -1,0 +1,27 @@
+pacote  br.univille.dacs2020.controller ;
+
+importar  java.text.SimpleDateFormat ;
+importar  java.util.Date ;
+
+importar  org.springframework.stereotype.Controller ;
+importar  org.springframework.web.bind.annotation.GetMapping ;
+importar  org.springframework.web.bind.annotation.RequestMapping ;
+importar  org.springframework.web.servlet.ModelAndView ;
+
+
+@Controlador
+@RequestMapping ( " / " )
+ classe  pública HomeController {
+  
+    @GetMapping ( " " )
+     índice público ModelAndView  () {
+        Data agora =  new  Date ();
+        SimpleDateFormat sdf =  new  SimpleDateFormat ( " dd / MM / AAAA - HH: mm " );
+        Dados da string = sdf . formato (ágora);
+
+        retornar  novo  ModelAndView ( " home / index " , " dataatualizada " , data);
+
+
+
+    }
+}
