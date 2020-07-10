@@ -1,0 +1,50 @@
+pacote  br.univille.dacs2020.controller ;
+
+importar  java.util.List ;
+
+importar  org.springframework.beans.factory.annotation.Autowired ;
+importar  org.springframework.stereotype.Controller ;
+importar  org.springframework.web.bind.annotation.GetMapping ;
+importar  org.springframework.web.bind.annotation.ModelAttribute ;
+importar  org.springframework.web.bind.annotation.PathVariable ;
+importar  org.springframework.web.bind.annotation.RequestMapping ;
+importar  org.springframework.web.servlet.ModelAndView ;
+
+import  br.univille.dacs2020.model.Paciente ;
+import  br.univille.dacs2020.service.PacienteService ;
+importar  org.springframework.web.bind.annotation.PostMapping ;
+importar  org.springframework.web.bind.annotation.RequestBody ;
+
+
+
+@Controlador
+@RequestMapping ( " / paciente " )
+ classe  pública PacienteController {
+ 
+    @Autowired
+     serviço privado PacienteService ;
+ 
+    @GetMapping
+     índice público ModelAndView  () {
+        Lista < Paciente > listaPacientes = serviço . getAll ();
+        retornar  novo  ModelAndView ( " paciente / index " , " listapacientes " , listaPacientes);
+    }
+
+    @GetMapping ( " / novo " )
+    public  ModelAndView  createForm ( @ModelAttribute  Paciente  paciente ) {
+        retornar  novo  ModelAndView ( " paciente / form " );
+    }
+    @PostMapping ( params = " formulário " )
+    public  ModelAndView  save ( Paciente  paciente ) {
+        
+        serviço . salvar (paciente);
+        retornar  novo  ModelAndView ( " redirecionar: / paciente " );
+    }
+    @GetMapping ( value = " / alterar / {id} " )
+    public  ModelAndView  edit ( @PathVariable ( " id " ) Paciente  paciente ) {
+        retornar  novo  ModelAndView ( " paciente / formulário " , " paciente " , paciente);
+    }
+    
+    
+    
+}
